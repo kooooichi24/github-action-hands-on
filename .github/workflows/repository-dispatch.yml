@@ -5,7 +5,7 @@ on:
     types: [test]
 
 jobs:
-  test:
+  Repository-Dispatch-Test:
     runs-on: ubuntu-latest
     timeout-minutes: 5 # job全体
     steps:
