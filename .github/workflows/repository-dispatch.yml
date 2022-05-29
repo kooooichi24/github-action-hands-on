@@ -2,7 +2,7 @@ name: Test
 
 on:
   repository_dispatch:
-    types: [test]
+    types: [repository-dispatch-test]
 
 jobs:
   Repository-Dispatch-Test:
