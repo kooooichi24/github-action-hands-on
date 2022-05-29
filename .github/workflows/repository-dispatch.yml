@@ -12,4 +12,4 @@ jobs:
       - env:
           MESSAGE: ${{ github.event.client_payload.message }}
         run: echo $MESSAGE
-      # - run: echo ${{ secrets.SECRET_HOGE }}
+      - run: echo ${{ secrets.SECRET_HOGE }}
