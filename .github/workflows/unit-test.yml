@@ -4,9 +4,8 @@ on:
   push:
     paths:
       - "src/*"
-    paths-ignore:
-      - ".husky/**"
-      - "*.md"
+      - "!.husky/**"
+      - "!*.md"
 
 jobs:
   test:
