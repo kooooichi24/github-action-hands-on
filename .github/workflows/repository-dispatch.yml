@@ -1,0 +1,14 @@
+name: Test
+
+on:
+  repository_dispatch:
+    types: [test]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 # job全体
+    steps:
+      - env:
+          MESSAGE: ${{ github.event.client_payload.message }}
+        run: echo $MESSAGE
