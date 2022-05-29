@@ -4,6 +4,9 @@ on:
   repository_dispatch:
     types: [repository-dispatch-test]
 
+env:
+  SECRET_HOGE: ${{ secrets.SECRET_HOGE }}
+
 jobs:
   Repository-Dispatch-Test:
     runs-on: ubuntu-latest
@@ -12,3 +15,4 @@ jobs:
       - env:
           MESSAGE: ${{ github.event.client_payload.message }}
         run: echo $MESSAGE
+      - run: echo $SECRET_HOGE
