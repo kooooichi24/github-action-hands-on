@@ -1,0 +1,35 @@
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 # job全体
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-v${{ matrix.node }}-${{ hashFiles('**/package-lock.json') }}
+      
+      - name: Install
+        if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
+        run: npm install
+      
+      - name: Lint and Format
+        run: npm run lint:fix
+
+      - name: Unit Test
+        run: npm run test:unit
