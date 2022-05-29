@@ -28,8 +28,6 @@ jobs:
         if: ${{ steps.npm-cache.outputs.cache-hit != 'true' }}
         run: npm install
       
-      - run: npm ls --depth=0
-      
       - name: Lint and Format
         run: npm run lint:fix
 
